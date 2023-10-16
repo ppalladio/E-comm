@@ -10,15 +10,19 @@ import {
     FormField,
     FormItem,
     FormLabel,
-	FormMessage,
+    FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { useState } from 'react';
+import { log } from 'console';
+import axios from 'axios';
 const formSchema = z.object({
     name: z.string().min(1),
 });
 export const StoreModal = () => {
     const storeModal = useStoreModal();
+    const [Loading, setLoading] = useState(false);
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -26,7 +30,16 @@ export const StoreModal = () => {
         },
     });
     const onSubmit = async (value: z.infer<typeof formSchema>) => {
-        console.log(value);
+        try {
+			setLoading(true);
+			const response = await axios.post('/api/stores', value);
+
+		} catch (error) {
+			console.log(error);
+			
+		}finally{
+			setLoading(false);
+		}
     };
     return (
         <Modal
@@ -47,22 +60,24 @@ export const StoreModal = () => {
                                         <FormLabel>Name</FormLabel>
                                         <FormControl>
                                             <Input
+                                                disabled={Loading}
                                                 placeholder="E-com"
                                                 {...field}
                                             />
                                         </FormControl>
-										<FormMessage/>
+                                        <FormMessage />
                                     </FormItem>
                                 )}
                             />
                             <div className="p-6 space-x-2 flex items-center justify-end w-full">
                                 <Button
+								disabled={Loading}
                                     variant="outline"
                                     onClick={storeModal.onClose}
                                 >
                                     Cancel
                                 </Button>
-                                <Button type='submit'>Continue</Button>
+                                <Button disabled={Loading} type="submit">Continue</Button>
                             </div>
                         </form>
                     </Form>
