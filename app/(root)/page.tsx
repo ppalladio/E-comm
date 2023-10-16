@@ -1,10 +1,25 @@
-import { Button } from "@/components/ui/button";
+'use client';
+import Modal from '@/components/ui/modal';
+import { useStoreModal } from '@/hooks/useStoreModal';
+import { UserButton } from '@clerk/nextjs';
+import { useEffect } from 'react';
 
-export default function Home() {
-    return <div className=" p-4">
-<Button>
-Click
-</Button>
+const SetupPage = () => {
+	const onOpen = useStoreModal((state)=>state.onOpen)
+	const isOpen = useStoreModal((state)=>state.isOpen)
 
-	</div>;
-}
+	useEffect(() => {
+	  if(!isOpen) {
+		onOpen()
+	  }
+	
+	}, [isOpen, onOpen])
+	
+    return (
+        <div className="p-4">
+         
+		 root page
+        </div>
+    );
+};
+export default SetupPage;
