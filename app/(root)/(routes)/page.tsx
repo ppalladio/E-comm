@@ -1,7 +1,5 @@
 'use client';
-import Modal from '@/components/ui/modal';
 import { useStoreModal } from '@/hooks/useStoreModal';
-import { UserButton } from '@clerk/nextjs';
 import { useEffect } from 'react';
 
 const SetupPage = () => {
