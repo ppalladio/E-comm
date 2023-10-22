@@ -8,7 +8,7 @@ import {
     FormField,
     FormItem,
     FormLabel,
-	FormMessage,
+    FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
@@ -68,14 +68,14 @@ const SettingsForm: React.FC<SettingPageProps> = ({ initialData }) => {
                                             placeholder="Store Name"
                                         />
                                     </FormControl>
-									<FormMessage/>
+                                    <FormMessage />
                                 </FormItem>
                             )}
                         />
                     </div>
-					<Button disabled={loading} type='submit'>
-						Save Changes
-					</Button>
+                    <Button disabled={loading} type="submit">
+                        Save Changes
+                    </Button>
                 </form>
             </Form>
         </>
