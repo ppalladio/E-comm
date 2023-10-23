@@ -27,6 +27,7 @@ export async function PATCH(
             data: { name },
         });
 
+        console.log('updated');
         return NextResponse.json(store);
     } catch (error) {
         console.log('app/api/stores/[storeId]/route, PATCH', error);

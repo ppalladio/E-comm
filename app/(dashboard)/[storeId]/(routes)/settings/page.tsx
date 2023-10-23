@@ -17,15 +17,15 @@ const SettingPage: React.FC<SettingPageProps> = async ({ params }) => {
             userId,
         },
     });
-	
+
     if (!store) {
         redirect('/');
     }
     return (
         <div className="flex flex-col ">
             <div className="flex-1 space-y-4 p-8 pt-6">
-                <SettingsForm initialData={store}/>
-				sal
+                <SettingsForm initialData={store} />
+                sal
             </div>
         </div>
     );

@@ -14,20 +14,25 @@ import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Store } from '@prisma/client';
+import axios from 'axios';
 import { Trash } from 'lucide-react';
+import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import * as z from 'zod';
 
 interface SettingPageProps {
     initialData: Store;
 }
 const FormSchema = z.object({
-    name: z.string().min(1),
+    name: z.string().min(2),
 });
 
 type SettingsFormValues = z.infer<typeof FormSchema>;
 const SettingsForm: React.FC<SettingPageProps> = ({ initialData }) => {
+    const params = useParams();
+    const router = useRouter();
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const form = useForm<SettingsFormValues>({
@@ -36,14 +41,28 @@ const SettingsForm: React.FC<SettingPageProps> = ({ initialData }) => {
     });
 
     const onSubmit = async (data: SettingsFormValues) => {
-        console.log(data);
+        try {
+            setLoading(true);
+            await axios.patch(`/api/stores/${params.storeId}`, data);
+            router.refresh();
+            toast.success('Settings updated');
+        } catch (error: any) {
+            toast.error('Something went wrong');
+        } finally {
+            setLoading(false);
+        }
     };
     return (
         <>
             <div className="flex items-center justify-between">
                 <Heading title="Settings" description="Manage your store" />
                 Settings
-                <Button variant="destructive" size="icon" disabled={loading} onClick={() => setOpen(true)}>
+                <Button
+                    variant="destructive"
+                    size="icon"
+                    disabled={loading}
+                    onClick={() => setOpen(true)}
+                >
                     <Trash className="h-4 w-4" />
                 </Button>
             </div>
@@ -81,4 +100,5 @@ const SettingsForm: React.FC<SettingPageProps> = ({ initialData }) => {
         </>
     );
 };
+
 export default SettingsForm;
