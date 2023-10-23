@@ -43,7 +43,7 @@ const SettingsForm: React.FC<SettingPageProps> = ({ initialData }) => {
             <div className="flex items-center justify-between">
                 <Heading title="Settings" description="Manage your store" />
                 Settings
-                <Button variant="destructive" size="icon" onClick={() => {}}>
+                <Button variant="destructive" size="icon" disabled={loading} onClick={() => setOpen(true)}>
                     <Trash className="h-4 w-4" />
                 </Button>
             </div>
