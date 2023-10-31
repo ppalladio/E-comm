@@ -37,7 +37,7 @@ export async function POST(
             );
         }
 
-        const billboard = await prismadb.billboard.updateMany({
+        const billboard = await prismadb.billboard.create({
             data: { label, imageUrl, storeId: params.storeId },
         });
 

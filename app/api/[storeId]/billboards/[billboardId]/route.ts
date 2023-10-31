@@ -61,7 +61,7 @@ export async function PATCH(
             );
         }
 
-        const billboard = await prismadb.billboard.updateMany({
+        const billboard = await prismadb.billboard.update({
             where: { id: params.billboardId },
             data: {
                 label,
