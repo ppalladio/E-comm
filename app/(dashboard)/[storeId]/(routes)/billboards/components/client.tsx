@@ -3,12 +3,13 @@
 import Heading from '@/components/ui/Heading';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { Billboard } from '@prisma/client';
 import { Plus } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
+import { BillboardColumn, columns } from './columns';
+import { DataTable } from '@/components/ui/DataTable';
 
 interface BillBoardClientProps{
-	data: Billboard[]
+	data: BillboardColumn[]
 }
 const BillBoardClient: React.FC<BillBoardClientProps> = ({data}) => {
     const router = useRouter();
@@ -29,6 +30,9 @@ const BillBoardClient: React.FC<BillBoardClientProps> = ({data}) => {
                 </Button>
             </div>
             <Separator />
+
+			<DataTable columns={columns} data={data} searchKey="label"/>
+
         </>
     );
 };
