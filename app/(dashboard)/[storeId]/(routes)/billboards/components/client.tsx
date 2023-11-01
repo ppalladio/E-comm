@@ -30,7 +30,6 @@ const BillBoardClient: React.FC<BillBoardClientProps> = ({data}) => {
                 </Button>
             </div>
             <Separator />
-
 			<DataTable columns={columns} data={data} searchKey="label"/>
 
         </>
