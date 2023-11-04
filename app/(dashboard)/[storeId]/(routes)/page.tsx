@@ -13,7 +13,7 @@ const DashboardPage: React.FC<StoreDashboardPageProps> = async ({ params }) => {
 
     return (
         <div>
-            currently on store{' '}
+            currently on store
             <span className="text-blue-500">{store?.name}</span>
         </div>
     );
