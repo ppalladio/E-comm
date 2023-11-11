@@ -80,7 +80,7 @@ export const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
         try {
             setLoading(true);
             await axios.delete(
-                `/api/${params.storeId}/Colors/${params.colorId}`,
+                `/api/${params.storeId}/colors/${params.colorId}`,
             );
             router.refresh();
             router.push(`/${params.storeId}/coilors`);
