@@ -83,7 +83,7 @@ export const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
                 `/api/${params.storeId}/colors/${params.colorId}`,
             );
             router.refresh();
-            router.push(`/${params.storeId}/coilors`);
+            router.push(`/${params.storeId}/colors`);
             toast.success('Color deleted.');
         } catch (error: any) {
             toast.error(

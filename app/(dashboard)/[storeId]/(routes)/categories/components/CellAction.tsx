@@ -1,3 +1,4 @@
+'use client';
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -19,7 +20,7 @@ interface CellActionProps {
 }
 
 const CellAction: React.FC<CellActionProps> = ({ data }) => {
-    'use client';
+
     const onCopy = (id: string) => {
         navigator.clipboard.writeText(id);
         toast.success('Category Id Copied To Clipboard');
