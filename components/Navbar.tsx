@@ -6,7 +6,7 @@ import prismadb from '@/lib/prismadb';
 
 const Navbar = async () => {
     const { userId } = auth();
-
+console.log(userId)
     if (!userId) {
         redirect('/sign-in');
     }
