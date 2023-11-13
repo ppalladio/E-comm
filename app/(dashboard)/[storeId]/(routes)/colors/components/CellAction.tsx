@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -6,7 +6,7 @@ import {
     DropdownMenuLabel,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { BillboardColumn } from './columns';
+import { ColorColumn } from './columns';
 import { Button } from '@/components/ui/button';
 import { Copy, Edit, MoreHorizontal, Trash } from 'lucide-react';
 import toast from 'react-hot-toast';
@@ -16,14 +16,13 @@ import { useState } from 'react';
 import AlertModal from '@/components/modals/AlertModal';
 
 interface CellActionProps {
-    data: BillboardColumn;
+    data: ColorColumn;
 }
 
 const CellAction: React.FC<CellActionProps> = ({ data }) => {
-
     const onCopy = (id: string) => {
         navigator.clipboard.writeText(id);
-        toast.success('Billboard Id Copied To Clipboard');
+        toast.success('Color Id Copied To Clipboard');
     };
     const router = useRouter();
     const params = useParams();
@@ -32,12 +31,12 @@ const CellAction: React.FC<CellActionProps> = ({ data }) => {
     const onDelete = async () => {
         try {
             setLoading(true);
-            await axios.delete(`/api/${params.storeId}/billboards/${data.id}`);
+            await axios.delete(`/api/${params.storeId}/colors/${data.id}`);
             router.refresh();
-            toast.success('Billboard deleted.');
+            toast.success('Color deleted.');
         } catch (error: any) {
             toast.error(
-                'Make sure you removed all categories using this billboard first.',
+                'Make sure you removed all products using this color first.',
             );
         } finally {
             setLoading(false);
@@ -69,9 +68,7 @@ const CellAction: React.FC<CellActionProps> = ({ data }) => {
                     </DropdownMenuItem>
                     <DropdownMenuItem
                         onClick={() =>
-                            router.push(
-                                `/${params.storeId}/billboards/${data.id}`,
-                            )
+                            router.push(`/${params.storeId}/colors/${data.id}`)
                         }
                     >
                         <Edit className="mr-2 h-4 w-4" />
