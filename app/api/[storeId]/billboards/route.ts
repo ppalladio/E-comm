@@ -30,6 +30,7 @@ export async function POST(
                 userId,
             },
         });
+        console.log(storeByUserId);
         if (!storeByUserId) {
             return new NextResponse(
                 'Stop doing what you are doing, you are not authorized',
@@ -60,7 +61,7 @@ export async function GET(
         const billboards = await prismadb.billboard.findMany({
             where: { storeId: params.storeId },
         });
-
+        console.log(billboards);
         return NextResponse.json(billboards);
     } catch (error) {
         console.log('app/api/[storeId]/billboards/route, GET', error);

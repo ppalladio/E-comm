@@ -73,8 +73,8 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
             } else {
                 await axios.post(`/api/${params.storeId}/billboards`, data);
             }
-            router.refresh();
             router.push(`/${params.storeId}/billboards`);
+            router.refresh();
             toast.success(toastMessage);
         } catch (error: any) {
             toast.error('Something went wrong.');
@@ -89,8 +89,8 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
             await axios.delete(
                 `/api/${params.storeId}/billboards/${params.billboardId}`,
             );
-            router.refresh();
             router.push(`/${params.storeId}/billboards`);
+            router.refresh();
             toast.success('Billboard deleted.');
         } catch (error: any) {
             toast.error(
@@ -140,7 +140,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
                                         value={field.value ? [field.value] : []}
                                         disabled={loading}
                                         onChange={(url) => field.onChange(url)}
-                                        onRemove={(url) => field.onChange('')}
+                                        onRemove={() => field.onChange('')}
                                     />
                                 </FormControl>
                                 <FormMessage />
