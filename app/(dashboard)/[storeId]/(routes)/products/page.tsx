@@ -19,10 +19,11 @@ const ProductsPage = async ({ params }: { params: { storeId: string } }) => {
 		price:formatter.format(item.price.toNumber()),
 		category:item.category.name,
 		size:item.size.name,
-		color:item.color.name,
+		color:item.color.value,
 		createdAt:format(item.createdAt,'do MMMM, yyyy')
 
 	}))
+	console.log(products)
     return (
         <div className="flex-col">
             <div className="flex-1 space-y-4 p-8 pt-6">

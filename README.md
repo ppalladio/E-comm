@@ -1,36 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## For Stripe testing:
 
-## Getting Started
-
-First, run the development server:
+### Set up
+[doc](https://stripe.com/docs/stripe-cli)
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+stripe login
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+get the token, add to .env => STRIPE_WEBHOOK_SECRET
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+stripe listen --forward-to localhost:4242/webhook # standard step up
+stripe listen --forward-to localhost:4242/api/webhook #in this project
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Trigger a success payment event
 
-## Learn More
+```bash
+stripe trigger payment_intent.succeeded
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Card
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Visa 4242424242424242 Any 3 digits Any future date
