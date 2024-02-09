@@ -8,6 +8,7 @@ import { ToastProvider } from '@/providers/ToastProvider';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
+import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
     title: 'Admin Dashboard',
@@ -23,9 +24,17 @@ export default function RootLayout({
         <ClerkProvider>
             <html lang="en">
                 <body className={inter.className}>
-					<ToastProvider/>
-                    <ModalProvider />
-                    {children}
+                    {' '}
+                    <ThemeProvider
+                        attribute="class"
+                        defaultTheme="system"
+                        enableSystem
+                        disableTransitionOnChange
+                    >
+                        <ToastProvider />
+                        <ModalProvider />
+                        {children}{' '}
+                    </ThemeProvider>
                 </body>
             </html>
         </ClerkProvider>
