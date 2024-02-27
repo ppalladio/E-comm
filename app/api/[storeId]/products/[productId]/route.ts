@@ -62,7 +62,7 @@ export async function DELETE(
                 id: params.productId,
             },
         });
-
+console.log(product)
         return NextResponse.json(product);
     } catch (error) {
         console.log('[PRODUCT_DELETE]', error);
